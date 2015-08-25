@@ -13,7 +13,7 @@
 			templates:['请选择','todoList','..'],
 			url:'welcome',
 			change:function(e){
-				vm.url = this.index == 0 ? 'welcome' : ( this.index ===  vm.templates.size()-1 ? 'more' : vm.templates[this.index] );
+				vm.url = this.index === 0 ? 'welcome' : ( this.index ===  vm.templates.size()-1 ? 'more' : vm.templates[this.index] );
 				//console.log( name );
 			},
 			add:function(e){
@@ -25,7 +25,7 @@
 		var todoListModel = avalon.define({
 				$id:'container',
 				content:'',
-				todoListArr:[],
+				todoListArr:[]
 				
 			});
 		avalon.scan();
@@ -40,7 +40,7 @@
 		</select>
 	</div>
 
-	<div ms-include-src="{{url}}.html" data-include-replace="false">
+	<div ms-include-src="{{url}}.html">
 		
 	</div>
 </body>
