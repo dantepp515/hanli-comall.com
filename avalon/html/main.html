@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Main</title>
+	<script src="../script/avalon.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	avalon.ready(function(){
+		avalon.templateCache["welcome.html"] = "<H1>欢迎</H1>";
+		avalon.templateCache["more.html"] = "<H1>期待更多！</H1>";
+		var vm = avalon.define({
+			$id:'main',
+			templates:['请选择','todoList','..'],
+			url:'welcome',
+			change:function(e){
+				vm.url = this.index == 0 ? 'welcome' : ( this.index ===  vm.templates.size()-1 ? 'more' : vm.templates[this.index] );
+				//console.log( name );
+			},
+			add:function(e){
+					todoListModel.todoListArr.push( todoListModel.content );
+					todoListModel.content='';
+			}
+		});
+
+		var todoListModel = avalon.define({
+				$id:'container',
+				content:'',
+				todoListArr:[],
+				
+			});
+		avalon.scan();
+	});
+	</script>
+</head>
+<body ms-controller="main">
+	<div >
+		<label>选择内容</label>
+		<select>
+			<option ms-repeat="templates" ms-click="change">{{el}}</option>
+		</select>
+	</div>
+
+	<div ms-include-src="{{url}}.html" data-include-replace="false">
+		
+	</div>
+</body>
+</html>
