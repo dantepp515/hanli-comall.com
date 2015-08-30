@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>作用域绑定ms-controller</title>
+</head>
+<body>
+    <div ms-controller="AAA">
+        <div>{{name}}:{{color}}</div>
+        <div ms-controller="BBB">
+            <div>{{name}}:{{color}}</div>
+            <div ms-controller="CCC">
+                <div>{{name}}:{{color}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
