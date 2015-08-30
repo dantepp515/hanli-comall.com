@@ -9,7 +9,7 @@
 		<p ms-if="todoListArr.size()>0">现有{{todoListArr.size()}}项TODO List</p>
 		<ul>
 			<li ms-repeat-el="todoListArr">{{el}}
-				<a href="javascript:void(0);" ms-click="$remove" >x</a>
+				<a href="javascript:void(0);" ms-click="removeItem($index)" >x</a>
 			</li>
 		</ul>
 	</div>

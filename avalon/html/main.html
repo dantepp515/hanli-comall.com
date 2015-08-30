@@ -8,26 +8,86 @@
 	avalon.ready(function(){
 		avalon.templateCache["welcome.html"] = "<H1>欢迎</H1>";
 		avalon.templateCache["more.html"] = "<H1>期待更多！</H1>";
+		avalon.filters.parseSymbol = function(str){
+			return{
+				'元' : '元',
+				'USD' : '美元',
+				'HKD' : '港元',
+				'MOP':'澳门元',
+				'SGD' : '新加坡元',
+				'JPY' : '日元',
+				'EUR' : '欧元',
+				'GBP' : '英镑',
+				'RUB' : '卢布',
+				'TWD' : '台币'
+			}[str];
+		}
 		var vm = avalon.define({
 			$id:'main',
-			templates:['请选择','todoList','..'],
+			templates:['请选择','todoList','ms-controller','ms-important','ms-skip','interpolation-express','ms-value','filter','..'],
 			url:'welcome',
 			change:function(e){
 				vm.url = this.index === 0 ? 'welcome' : ( this.index ===  vm.templates.size()-1 ? 'more' : vm.templates[this.index] );
 				//console.log( name );
 			},
 			add:function(e){
-					todoListModel.todoListArr.push( todoListModel.content );
-					todoListModel.content='';
-			}
-		});
-
-		var todoListModel = avalon.define({
+					vm.todoListModel.todoListArr.push( vm.todoListModel.content );
+					vm.todoListModel.content='';
+			},
+			todoListModel : avalon.define({
 				$id:'container',
 				content:'',
 				todoListArr:[]
-				
-			});
+
+			}),
+			removeItem : function(index,e){
+				vm.todoListModel.todoListArr.removeAt(index);
+			}
+		});
+		var mc = avalon.define({
+			$id:'AAA',
+			name:'hanli',
+			color : 'black'
+		});
+		var mc2 = avalon.define({
+			$id:'BBB',
+			name : 'shenliang',
+			color : 'green'
+		});
+		var mc3 = avalon.define({
+			$id:'CCC',
+			name : 'jiangye'
+		})
+		var mc4 = avalon.define({
+			$id:'DDD',
+			name : 'liuyiyang'
+		});
+		var mc5 = avalon.define({
+			$id:'EEE',
+			name : 'jack',
+			color:'red'
+		});
+		var ie = avalon.define({
+			$id:'test',
+			word:'Hello world',
+			Suffix:'duplex'
+		});
+		var mvalue = avalon.define({
+			$id:'mvalue',
+			text:'111'
+		});
+		avalon.define({
+			$id:'filter',
+			cont:'<b>没有传参,用于将文本绑定转换为html绑定</b>',
+			word1:'avalon learning 大写',
+			word2:' Felix LU 小写 ',
+			string : '对字符串进行截断',
+			variable:'webkit-box-flex 驼峰',
+			string2:'<b>对于类似html格式的的字符串进行转义</b>',
+			money : '1200536.25355',
+			num : '134420.56777',
+			custom:'<i>这是一段自定义的字符串 This is a custom string</i>'
+		});
 		avalon.scan();
 	});
 	</script>
